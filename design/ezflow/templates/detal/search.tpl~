@@ -1,0 +1,143 @@
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
+
+<script type="text/javascript">
+{literal}
+       
+    jQuery(function( $ )
+    {
+        $("#detal :first").attr("selected", "selected");
+        $("#brand :first").attr("selected", "selected");
+        $("#model :first").attr("selected", "selected");
+        $("#brand").change( function () {
+            if ($(this).val() != "Все") {
+                var parentNodeID = $(this).val();
+                $("#model").empty().append("<option value=\"\">Все</option>");
+                $.ez('detal::search', {param1: parentNodeID}, function( data ){
+                        jQuery.each(data.content, function(key, value){
+                        $("#model").append("<option>"+value+"</option>");
+                        });                   
+                });
+            } else {
+                $("#model").empty().append("<option>Все</option>");
+            }
+        }); 
+    });
+{/literal}
+</script>
+
+{def $parts = fetch('detal','parts', hash())
+     $brands = fetch( 'content','list', hash( 'parent_node_id', '2', 
+                                            'class_filter_type', 'include',
+                                            'class_filter_array', array('brand')) ) }
+
+<div class="search_form">
+    <form method="post" action={"detal/search"|ezurl}>
+        <label id="l">Наименование</label>                                        
+        <select id="detal" name="detal">
+            <option value="">Все</option>
+            {foreach $parts as $part}
+                <option>{$part.name}</option>
+            {/foreach}
+        </select>
+
+        <label>Марка</label>
+        <select id="brand" name="brand">
+            <option value="">Все</option>
+            {foreach $brands as $brand}
+                <option value="{$brand.node_id}">{$brand.name}</option>
+            {/foreach}
+        </select>
+
+        <label>Модель</label>
+        <select id="model" name="model">
+            <option value="">Все</option>
+        </select>
+
+        <label id="l">Кузов</label>
+        <input type="text" name="body"/>
+        <label>Двигатель</label>
+        <input type="text" name="engine"/>
+        <label>Цвет</label>
+        <input type="text" name="color"/>
+        <input type="submit" value="Поиск"/>
+        
+        <div class="control-group">
+            <div class="controls">
+              <label class="radio">
+                <input type="radio" checked="" value="" id="optionsRadios3" name="rl"/>
+                Любой
+              </label>
+              <label class="radio">
+                <input type="radio" value="R" id="optionsRadios1" name="rl"/>
+                Правый
+              </label>
+              <label class="radio">
+                <input type="radio" value="L" id="optionsRadios2" name="rl"/>
+                Левый
+              </label>
+              
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="controls">
+              <label class="radio">
+                <input type="radio" checked="" value="" id="optionsRadios3" name="fb"/>
+                Любой
+              </label>
+              <label class="radio">
+                <input type="radio" value="F" id="optionsRadios1" name="fb"/>
+                Передний
+              </label>
+              <label class="radio">
+                <input type="radio" value="B" id="optionsRadios2" name="fb"/>
+                Задний
+              </label>
+              
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="controls">
+              <label class="radio">
+                <input type="radio" checked="" value="" id="optionsRadios3" name="tb"/>
+                Любой
+              </label>
+              <label class="radio">
+                <input type="radio" value="U" id="optionsRadios1" name="tb"/>
+                Верхний
+              </label>
+              <label class="radio">
+                <input type="radio" value="D" id="optionsRadios2" name="tb"/>
+                Нижний
+              </label>
+              
+            </div>
+        </div>
+	<input type="hidden" name="userData" value="{$userData}"/>
+    </form>
+</div>
+
+
+{def $image=fetch('content','node', hash('node_id', '8619'))
+     $url_alias='detal/search'
+     $search=fetch( 'content', 'search',
+                    hash( 'text', $userData,
+                          'class_id', array( '48' ),
+			  'offset', $offset,
+			  'limit', 10 ) )}
+
+</div>
+{foreach $search.SearchResult as $res}
+	{node_view_gui view='line' content_node=$res image=$image}
+{/foreach}
+
+            {include name=navigator
+                     uri='design:detal/navigator/search_pagination.tpl'
+                     page_uri=$url_alias
+                     item_count=$search.SearchCount
+                     view_parameters=$offset
+                     item_limit=10
+                     userData=$userData}
+
+

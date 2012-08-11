@@ -1,0 +1,5 @@
+  <div class="navbar">
+  <div class="navbar_inner">
+    {include uri=concat('design:menu/', $pagedata.top_menu, '.tpl')}
+  </div>
+  </div>

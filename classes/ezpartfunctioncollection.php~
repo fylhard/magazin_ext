@@ -1,0 +1,25 @@
+<?php
+
+class eZPartFunctionCollection
+{
+    public static function fetchPartsList()
+    {
+        try {
+            $dataArray = array();
+            $db = DBHelper::getConnection();
+            $sql = "SELECT DISTINCT name FROM ezcontentobject WHERE contentclass_id = ?";
+            $res = $db->prepare($sql);
+            $res->execute($class_id);
+            $dataArray = $res->fetchAll(PDO::FETCH_ASSOC);
+            
+            return array('result' => $dataArray);
+            
+        } catch (PDOException $e) {
+           echo $e->getMessage();
+           eZDebug::writeError( $errMsg );
+           return array( 'error' => $errMsg );
+        }
+    }
+    
+    
+}

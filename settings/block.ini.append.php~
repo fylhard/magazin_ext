@@ -1,0 +1,38 @@
+<?php /* #?ini charset="utf-8"?
+
+# Setting file for ezflow blocks as used by the Layout datatype
+# A layout is divided into zones and then blocks, take a look in
+# zone.ini for zone definitions.
+ 
+[General]
+#AllowedTypes[]=Example
+AllowedTypes[]=search_detal
+
+[PushToBlock]
+# List of content classes using Layout datatype
+ContentClasses[]=frontpage
+# The subtree node ID from which to fetch objects with Layout datatype
+RootSubtree=1
+
+[MainStory]
+Name=Main story (Manual)
+NumberOfValidItems=1
+NumberOfArchivedItems=5
+ManualAddingOfItems=enabled
+ViewList[]=main_story1
+ViewList[]=main_story2
+ViewList[]=main_story3
+ViewList[]=main_story_full
+ViewName[main_story1]=Main story (1)
+ViewName[main_story2]=Main story (2)
+ViewName[main_story3]=Main story (3)
+ViewName[main_story_full]=Main story full
+
+[search_detal]
+Name=Search Detal
+ManualAddingOfItems=disabled
+CustomAttributes[]
+ViewList[]=search
+ViewName[search]=search detal
+
+*/ ?>

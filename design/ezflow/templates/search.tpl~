@@ -1,0 +1,14 @@
+
+{*Show post data in template of the module*}
+
+{if is_set($data_array)}
+{foreach $data_array as $predmet}
+   {foreach $predmet as $item} 
+       {$item}<br />
+   {/foreach}
+{/foreach}
+{else}
+error-----------no_post
+{/if}
+
+

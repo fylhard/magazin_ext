@@ -1,0 +1,109 @@
+/* BLOCK VSTUP START */
+div.hide {
+    display:none;
+}
+
+div.input_form {
+    background-color: #FFF;
+    display:block;
+    width:880px;
+    overflow:hidden;
+    box-shadow:rgba(0, 0, 0, 0.296875) 0px 2px 4px;
+    border-radius: 2px;
+    margin-bottom:10px;
+}
+
+div.input_form br {
+    clear:both;
+}
+div.input {
+    float:left; 
+    margin-top: 20px;
+    margin-bottom:20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border:none;
+    display:block;
+}
+
+div.input label{
+    float:left;
+    margin-left:5px; 
+    max-width:120px;
+    max-height:50px;
+    text-align: right;
+    display: block;
+    white-space: normal;
+}
+
+div.input input{
+    float:left;
+    width:100px;
+    height:50px; 
+    box-shadow:rgba(0, 0, 0, 0.296875) 1px 1px 2px 1px;
+}
+
+
+input.prognoz {
+    width:100px;
+    height:50px; 
+    border-radius: 10px;
+    background-color: #BBB;
+    margin: 20px;  
+    font-size: 20px;
+    float:right;
+}
+
+button.addpredmet {
+    width:100px;
+    height:30px; 
+    border-radius: 4px;
+    background-color: #BBB;
+    margin:20px;
+    font-size: 10px;
+    float:left;
+    display:block;
+}
+
+select.predmet {
+    float:left;
+    margin:5px; 
+    display: block;
+}
+/* BLOCK VSTUP END */
+/* COLUMNS 1zoneslayout1: START */
+
+div.zone-layout-1zoneslayout1 div.border-mc
+{
+    padding: 0;
+}
+
+div.zone-layout-1zoneslayout1 div.content-columns
+{
+    padding: 0 0 0 486px;
+}
+
+div.zone-layout-1zoneslayout1 div.leftcol-position
+{
+    width: 900px;
+    margin-left: -486px;
+}
+
+/* COLUMNS 1zoneslayout1: END */
+
+div.rezult 
+{
+    border-radius: 4px;
+    background-color: #fff;
+    margin: 5px;
+    padding: 10px;
+}
+
+div.rezult-item
+{
+    border-radius: 4px;
+    background-color: #fff;
+    margin: 5px;
+    padding: 10px;
+    border:1px solid black;
+}

@@ -1,0 +1,66 @@
+<div class="input_form">
+
+{*Массив предметов для ЗНО*}
+
+{def $subjects = array('--Оберіть предмет--',
+                  'Іспанська мова',
+                  'Англійська мова',
+                  'Математика',
+                  'Історія України',
+                  'Фізика',
+                  'Біологія',
+                  'Географія',
+                  'Німецька мова',
+                  'Російська мова',
+                  'Французька мова',
+                  'Хімія')}
+
+
+<form method="post" action={"read_data/search"|ezurl}>
+
+
+   <div class="input" ><label>Атестат</label><input type="text" name="1"/></div>
+   <div class="input"><label>Українська мова та література</label><input type="text" name="2"/></div>
+   <input type="submit" value="Прогноз" class="prognoz"/>
+<br />   
+
+
+{for 3 to 5 as $counter}
+<div class="input_hide label" id={$counter}>
+<label class="label_input" id="l{$counter}"></label>
+<select class="predmet" name="s{$counter}">
+   {foreach $subjects as $subject}
+     <option>{$subject}</option>
+   {/foreach}
+</select>
+<input class="label_input input" type="text" name="{$counter}" id="i{$counter}"/>
+</div>
+{/for}
+</form>
+
+<button class="addpredmet">Додати предмет</button>
+{*скрипт для отображения названия предмета и поля ввода оценки. Действие происходит при изменении выбора элемента выпадающего списка*}
+</div>
+<script>
+{literal}
+ var i=3;   
+
+    $("button.addpredmet").click(function() {
+    $("#"+i).show(); 
+    $("button.addpredmet").hide();
+    
+});
+
+    $(document).ready( function(){
+       $("select").change( function () {
+               $(this).hide();
+               $("button.addpredmet").show();
+               $("#l"+i).show().text($(this).val());
+               $("#i"+i).show();
+               i++;
+               if (i == 6) {$("button.addpredmet").hide();}
+        }) });
+{/literal}
+</script>
+
+

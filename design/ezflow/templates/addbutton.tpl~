@@ -1,0 +1,19 @@
+<div class="block-separator"/>
+<div>
+<button class="addpredmet">Додати предмет</button>
+{*скрипт для отображения названия предмета и поля ввода оценки. Действие происходит при изменении выбора элемента выпадающего списка*}
+
+<script>
+{literal}
+    $("select").change(function () {
+               
+        })
+        .change();
+
+    $("button.addpredmet").click(function() {
+    $("#3").show('slow');
+});
+{/literal}
+</script>
+
+</div>

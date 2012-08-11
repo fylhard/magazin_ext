@@ -1,0 +1,49 @@
+<?php
+
+class magazin
+{
+    public static function search($parentNodeID)
+    {
+        $children = array();
+        $childrenObjects = array();
+        
+        if ( isset( $parentNodeID['0'] ) )
+        {
+            $parentNodeID = $parentNodeID['0'];
+            $depth = '1'; 
+            $childrenObjects = eZContentFunctionCollection::fetchObjectTree($parentNodeID, null, null, null, null, null, '1',
+                                                                            null, null, null, null, 'include', array('brand') );
+            foreach ($childrenObjects["result"] as $value) {
+                $temp = null;
+                $temp = ezjscAjaxContent::simplify($value);
+
+                $children[] = $temp['name'];
+
+            }
+            
+            return $children; 
+
+        } else {
+            $http = eZHTTPTool::instance();
+            if ( $http->hasPostVariable( 'param1' ) )
+            {
+                $parentNodeID = $http->postVariable( 'param1' );
+                
+                $depth = '1'; 
+                $childrenObjects = eZContentFunctionCollection::fetchObjectTree($parentNodeID, null, null, null, null, null, '1',
+                                                                                null, null, null, null, 'include', array('brand') );
+                foreach ($childrenObjects["result"] as $value) {
+                    $temp = null;
+                    $temp = ezjscAjaxContent::simplify($value);
+
+                    $children[] = $temp['name'];
+
+                }
+
+                return $children; 
+            }
+        }
+            
+        return "Error";
+    }
+}

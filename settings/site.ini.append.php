@@ -1,0 +1,8 @@
+<?php /* #?ini charset="utf-8"?
+
+[SiteSettings]
+SiteName=The Right Weel
+SiteURL=theRightWeel
+
+
+*/ ?>

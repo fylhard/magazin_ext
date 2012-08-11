@@ -1,0 +1,36 @@
+{*Массив предметов для ЗНО*}
+
+{def $subjects = array('Іспанська мова',
+                  'Англійська мова',
+                  'Математика',
+                  'Історія України',
+                  'Фізика',
+                  'Біологія',
+                  'Географія',
+                  'Німецька мова',
+                  'Російська мова',
+                  'Французька мова',
+                  'Хімія')}
+
+
+<form method="post" action={"read_data/search"|ezurl}>
+
+
+   <div class="input" ><label>Атестат</label><input type="text" name="1"/></div>
+   <div class="input"><label>Українська мова та література</label><input type="text" name="2"/></div>
+   <input type="submit" value="Прогноз" class="prognoz"/>
+<br />   
+
+
+{for 3 to 5 as $counter}
+<div class="input_hide" id={$counter}>
+<select class="predmet" name="s{$counter}">
+   {foreach $subjects as $subject}
+     <option>{$subject}</option>
+   {/foreach}
+</select>
+<input type="text" name="{$counter}"/>
+</div>
+{/for}
+</form>
+
